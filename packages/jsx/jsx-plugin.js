@@ -1,14 +1,16 @@
 var handler = function (compileStep) {
   var source = compileStep.read().toString('utf8');
   var outputFile = compileStep.inputPath + ".js";
+  var babelOptions = Babel.getDefaultOptions({
+    react: true
+  });
+
+  babelOptions.sourceMap = true;
+  babelOptions.filename = compileStep.pathForSourceMap;
+  babelOptions.sourceMapName = compileStep.pathForSourceMap;
 
   try {
-    var result = Babel.transformMeteor(source, {
-      sourceMap: true,
-      filename: compileStep.pathForSourceMap,
-      sourceMapName: compileStep.pathForSourceMap,
-      extraWhitelist: ["react"]
-    });
+    var result = Babel.transformMeteor(source, babelOptions);
   } catch (e) {
     if (e.loc) {
       // Babel error

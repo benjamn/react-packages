@@ -1,13 +1,13 @@
 Package.describe({
   name: "jsx",
   summary: "Build plugin that transpiles .jsx files using Babel",
-  version: '0.1.3',
+  version: '0.1.4',
   documentation: 'README.md'
 });
 
 Package.registerBuildPlugin({
   name: 'transpileJSX',
-  use: ['babel-compiler@5.7.3'],
+  use: ['babel-compiler@5.8.3'],
   sources: [
     'jsx-plugin.js'
   ]
